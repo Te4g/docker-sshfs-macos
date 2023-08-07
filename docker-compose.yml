@@ -1,0 +1,16 @@
+services:
+    nginx:
+        build: .
+        volumes:
+            - ./nginx.conf:/etc/nginx/conf.d/default.conf
+            - ./mime.types:/etc/nginx/mime.types
+            - ./fuse.conf:/etc/fuse.conf
+            - /run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock
+        privileged: true
+        environment:
+            - ADDRESS=${ADDRESS}
+            - DIRECTORY=${DIRECTORY}
+            - SSH_PORT=${SSH_PORT:-22}
+            - SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock
+        ports:
+            - "9999:80"
