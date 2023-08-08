@@ -22,3 +22,9 @@ docker run --rm --privileged \
   -p 9999:80 \
   te4g/mount-ssh
 ```
+
+or set the environment variables in a `.env` file and run:
+
+```bash
+docker compose up -d --build
+```
